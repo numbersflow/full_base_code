@@ -1,0 +1,47 @@
+# 빌드 스테이지
+FROM node:18.19-alpine3.18 AS builder
+
+# 타임존 설정
+ENV TZ=Asia/Seoul
+
+# 작업 디렉토리 설정
+WORKDIR /app
+
+# 패키지 파일 복사
+COPY package*.json ./
+
+# 프로덕션 의존성 설치 (package-lock.json 사용)
+RUN npm ci
+
+# 소스 코드 복사
+COPY . .
+
+RUN npm run build:prod
+
+# 실행 스테이지
+FROM node:18.19-alpine3.18 AS runner
+
+# 타임존 설정
+ENV TZ=Asia/Seoul
+
+WORKDIR /app
+
+# 필요한 파일만 복사
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+# 환경 변수 설정
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# 실행 포트 설정
+EXPOSE 3000
+
+# healthcheck 설정
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
+
+# 서버 실행
+CMD ["node", "server.js"]
