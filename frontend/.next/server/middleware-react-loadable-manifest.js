@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"components/ui/charts/AreaChart.tsx -> recharts\":{\"id\":\"components/ui/charts/AreaChart.tsx -> recharts\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_recharts_es6_index_js.js\"]}}"
