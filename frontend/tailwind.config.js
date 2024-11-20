@@ -2,9 +2,9 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    // 프로젝트 구조에 맞게 경로 수정
     './src/app/**/*.{ts,tsx}',
     './src/components/**/*.{ts,tsx}',
+    './src/pages/**/*.{ts,tsx}', // 이 줄을 추가
     './src/common/**/*.{ts,tsx}',
     './src/admin/**/*.{ts,tsx}',
   ],

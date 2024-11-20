@@ -1,4 +1,4 @@
-// File: /home/liam/toy_test/base/frontend/src/app/page.tsx
+// File: /home/liam/projects/full_base_code/frontend/src/app/page.tsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

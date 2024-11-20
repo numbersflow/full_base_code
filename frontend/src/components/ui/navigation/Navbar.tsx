@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {}
 
@@ -52,10 +53,10 @@ NavbarItem.displayName = "NavbarItem"
 
 const NavbarLink = React.forwardRef<
   HTMLAnchorElement,
-  React.AnchorHTMLAttributes<HTMLAnchorElement>
->(({ className, ...props }, ref) => (
-  <a
-    ref={ref}
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
+>(({ className, href, ...props }, ref) => (
+  <Link
+    href={href}
     className={cn(
       "text-sm font-medium text-muted-foreground transition-colors hover:text-primary",
       className
