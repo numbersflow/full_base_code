@@ -1,0 +1,19 @@
+# 파이썬 바이트코드 파일 무시
+__pycache__/
+*.pyc
+
+# 로그 파일 무시
+*.log
+
+# 개발 도구 설정 파일 무시
+.vscode/
+.idea/
+alembic/
+*alembic.ini
+deploy/
+
+# 기타
+legacy/
+test/
+logs/
+
